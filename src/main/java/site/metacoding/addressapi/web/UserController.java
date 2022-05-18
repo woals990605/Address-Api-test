@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,5 +48,17 @@ public class UserController {
         userService.회원가입(joinReqDto.toEntity());
 
         return "redirect:/login-form";
+    }
+
+    @GetMapping("/user/juso-popup")
+    public String jusoPopup() {
+        return "/user/jusoPopup";
+    }
+
+    @PostMapping("/user/juso-popup")
+    public String jusoCallBack(String inputYn, String roadFullAddr, Model model) {
+        model.addAttribute("inputYn", inputYn);
+        model.addAttribute("roadFullAddr", roadFullAddr);
+        return "/user/jusoPopup";
     }
 }
