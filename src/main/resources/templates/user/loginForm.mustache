@@ -1,20 +1,21 @@
-{{>/user/header}}
+{{>/header}}
 
-<div class="container">
-    <div class="my_auth_box">
-        <div class="my_auth_form_box">
-            <div class="my_auth_form_box_title">JSotry</div>
-            <form action="">
-                <input class="my_auth_form_box_input" type="text" name="" placeholder="유저네임" />
-                <input class="my_auth_form_box_input" type="password" name="" placeholder="비밀번호" />
-                <button type="submit" class="my_secondary_btn">로그인</button>
-            </form>
-            <div class="my_auth_form_box_link">
-                <div><a href="/join-form">회원가입</a></div>
-                <div>비밀번호 찾기</div>
-            </div>
-        </div>
+<form action="/join" method="post">
+    <div>
+        <h3>회원가입</h3>
     </div>
-</div>
-
-{{>/layout/footer}}
+    <div class="form-group">
+        <label for="email">username:</label>
+        <input type="text" class="form-control" placeholder="username" id="username" maxlength="20" required />
+    </div>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" placeholder="Password" id="pwd" maxlength="100" required />
+    </div>
+    <div class="form-group">
+        <label for="add">Address:</label>
+        <button></button>
+        <input type="text" class="form-control" placeholder="Address" id="Address" />
+    </div>
+    <button type="submit" class="btn btn-primary">회원가입</button>
+</form>
