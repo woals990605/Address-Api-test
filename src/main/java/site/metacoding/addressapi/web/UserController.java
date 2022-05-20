@@ -36,7 +36,7 @@ public class UserController {
     @PostMapping("/join")
     public String join(@Valid JoinReqDto joinReqDto, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() == true) {
             Map<String, String> errorMap = new HashMap<>();
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 errorMap.put(fe.getField(), fe.getDefaultMessage());
@@ -52,13 +52,17 @@ public class UserController {
 
     @GetMapping("/user/juso-popup")
     public String jusoPopup() {
+        System.out.println("gdgdgdgdgdg");
         return "/user/jusoPopup";
     }
 
     @PostMapping("/user/juso-popup")
     public String jusoCallBack(String inputYn, String roadFullAddr, Model model) {
+
         model.addAttribute("inputYn", inputYn);
         model.addAttribute("roadFullAddr", roadFullAddr);
+        System.out.println(inputYn);
+        System.out.println(roadFullAddr);
         return "/user/jusoPopup";
     }
 }
