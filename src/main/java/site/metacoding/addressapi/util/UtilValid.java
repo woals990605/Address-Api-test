@@ -1,5 +1,13 @@
 package site.metacoding.addressapi.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+
+import site.metacoding.addressapi.handler.ex.CustomException;
+
 public class UtilValid {
     public static void 요청에러처리(BindingResult bindingResult) {
         // 회원가입 로직에서 유효성 검사 코드는 부가적인 코드!! -> AOP
