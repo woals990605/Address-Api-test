@@ -52,7 +52,6 @@ public class UserController {
 
     @GetMapping("/user/juso-popup")
     public String jusoPopup() {
-        System.out.println("gdgdgdgdgdg");
         return "/user/jusoPopup";
     }
 
@@ -61,8 +60,6 @@ public class UserController {
 
         model.addAttribute("inputYn", inputYn);
         model.addAttribute("roadFullAddr", roadFullAddr);
-        System.out.println(inputYn);
-        System.out.println(roadFullAddr);
         return "/user/jusoPopup";
     }
 }
