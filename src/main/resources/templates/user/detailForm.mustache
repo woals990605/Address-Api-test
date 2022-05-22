@@ -1,0 +1,42 @@
+{{> /layout/header}}
+
+<div class="container">
+
+    <input id="my-userId" type="hidden" value="{{user.id}}">
+
+    <div class="form-group">
+        <h6>Username</h6>
+        <h4>{{user.username}}</h4>
+    </div>
+    <div class="form-group">
+        <h6>Password</h6>
+        <input type="password" class="form-control" value="{{user.password}}" readonly>
+    </div>
+    <div class="form-group">
+        <h6>Address</h6>
+        <h5>{{user.address}}</h5>
+    </div>
+    <a href="/s/user/{{user.id}}/update-form" id="btn-update" type="button" class="btn btn-info">수정하기</a>
+    <button id="btn-delete" type="button" class="btn btn-info">탈퇴하기</button>
+</div>
+
+<script>
+    $("#btn-delete").click(() => {
+        deleteAccount();
+    });
+    async function deleteAccount() {
+        let userId = $("#my-userId").val();
+        let response = await fetch(`/s/user/${userId}`, {
+            method: "DELETE"
+        });
+        if (response.status == 200) {
+            alert("탈퇴되었습니다.");
+            location.href = "/join-form";
+        } else {
+            alert("통신실패");
+        }
+    }
+</script>
+
+
+{{> /layout/footer}} 
