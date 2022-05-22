@@ -1,0 +1,63 @@
+{{> /layout/header}}
+
+<div class="container">
+
+    <input id="my-userId" type="hidden" value="{{user.id}}">
+
+    <div class="form-group">
+        <label>Username</label>
+        <input id="username" type="text" class="form-control" maxlength="20" value="{{user.username}}" readonly>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input id="password" type="password" class="form-control" maxlength="20" value="{{user.password}}" readonly>
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        <div class="d-flex justify-content-between">
+            <input id="address" type="text" class="form-control col-md-10" value="{{user.address}}" readonly>
+            <button type="button" class="btn btn-outline-info col-md-1" onclick="goPopup();">주소찾기</button>
+        </div>
+
+    </div>
+    <button id="btn-update" type="button" class="btn btn-info">수정하기</button>
+</div>
+
+<script>
+    $("#btn-update").click(() => {
+        update();
+    });
+    async function update() {
+        let userId = $("#my-userId").val();
+        let userDto = {
+            address: $("#address").val()
+        }
+        let response = await fetch(`/s/user/${userId}`, {
+            method: "PUT",
+            body: JSON.stringify(userDto),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            }
+        });
+        let responseParse = await response.json();
+        if (response.status == 200) {
+            alert("수정이 완료되었습니다.");
+            location.href = `/s/user/${userId}`;
+        } else {
+            alert("통신실패!");
+        }
+    }
+</script>
+
+<script>
+    function goPopup() {
+        let pop = window.open("/user/juso-popup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+    }
+    function jusoCallBack(roadFullAddr) {
+        // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+        $("#address").val(roadFullAddr);
+    }
+</script>
+
+
+{{> /layout/footer}} 
